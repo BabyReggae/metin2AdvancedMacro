@@ -1,19 +1,13 @@
 import utils as u
-import pyscreenshot as ImageGrab
-import numpy as np
 import userInteraction as ui
+
+import pyscreenshot as ImageGrab
 import keyboard
-import time
 
-from io import BytesIO
 from time import sleep
-from PIL import Image, ImageDraw, ImageFilter
-from datetime import datetime, time
-from pynput import mouse
-from pynput.mouse import Button, Controller
+from datetime import datetime
 
-import threading
-from multiprocessing import Process, Queue
+from pynput.mouse import Button, Controller
 from multiprocessing.pool import ThreadPool
 
 _FINISH = False
@@ -88,12 +82,7 @@ def inventorySnapShot( pos, inv ):
 mainAncor = detectAncorGetPosition( userIndication , 100 )
 pos = getAbsolutBoardPosByAncor( mainAncor )
 inv = setInventoryGrid( pos )
-# moveOverInventorySlots( inv )
-# inventorySnapShot( pos, inv )
 
-# u.moveThenClick( 'right' , pos["F4"] )
-# u.moveThenClick( 'right' , pos["1"] )
-## ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 boxRange = 100
 begX = pos['leftTopRedCircle'][0]
 begY = pos['leftTopRedCircle'][1]
@@ -163,9 +152,9 @@ def getUnVoidSlotPos( inv ):
                 res[x].append( inv[x][y] )
     print( "\r\n" + str( nbVoidSlot ) + " slots utilisés ont été trouvé dans l'inventaire" )
     return res
-## ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+## ///////////////////////////LOCAL SETTINGS //////////////////////////////////////////////////////////// 
 jegododo =  [(330, 609), (362, 609), (394, 609), (426, 609),(468, 609),(500, 609),(532, 609),(564,609)]
-#jegododo =  [(2529, 798), (362, 609), (394, 609), (426, 609),(468, 609),(500, 609),(532, 609),(2763, 799)]
 _grp = 200
 _ind = 7
 
@@ -207,9 +196,6 @@ def handleNextFish(interval):
     # sleep( interval )
     handleNextFish( interval )
 
-
-#handleNextFish( 14,  grp, ind  )
-# def : coord = (x,y)
 def moveByInterRecur( coord,  iterLeft):
     mouse = Controller()
     mouse.position = (coord[0],coord[1])
@@ -335,22 +321,6 @@ def startSortingLoop():
             # if( open("ancor/refs/bait1.png","rb").read() == open('ancor/shoots2/metin_'+ str(x) +'_'+ str(y) +'.png',"rb").read() ):
             #     return inv[x][y]
 
-# def stopFishing():
-#     print('Fishdetector is PAUSED, resume possible in 1.5sec...')
-#     sleep(1.5)
-#     print('Press "y" to RESUME...')
-#     while True:
-#         if keyboard.is_pressed('y'):
-#             startFishing()
-#             break
-
-
-## ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-### Actions -------------- Actions ###
-
-
-
-# startFishing()
-
+## __main__
 
 startSortingLoop()
