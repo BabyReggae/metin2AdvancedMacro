@@ -1,0 +1,6 @@
+CDiffLib.egg-info
+*.pyc
+_cdifflib.so
+build/
+dist/
+wheelhouse/
