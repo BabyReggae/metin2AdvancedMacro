@@ -1,7 +1,8 @@
 # metin2AdvancedMacro
+For Windows User only 
 
 UNSTABLE VERSION - NONFUNCTIONNAL
-For Windows OS
+
 
 
 This Metin2 bot use images recognition and Images to Text parser ( OCR )
