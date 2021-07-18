@@ -19,6 +19,7 @@ v0 release incoming
 Tools : 
 
 - autoShop
+
   requirements : 
     - administrator privileges
     - install pytesseract and edit the config by your "tesseract.exe" own path 
