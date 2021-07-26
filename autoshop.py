@@ -1,6 +1,7 @@
 import utils as u
 import userInteraction as ui
-import position
+import os
+
 import virtualKeyboardEvents as VK_event
 
 import pyscreenshot as ImageGrab
@@ -12,7 +13,12 @@ from datetime import datetime
 from pynput.mouse import Button, Controller
 from multiprocessing.pool import ThreadPool
 import sys
-
+from pygame import mixer  # Load the popular external library
+#lol
+mixer.init()
+mixer.music.load('D:/Web_game_solo/metin2AdvancedMacro/mp3/ffx_victorySong.mp3')
+clear = lambda: os.system('cls')
+clear()
 
 print ('Prix item a => :', '"'+str(sys.argv[2])+'$"'  )
 
@@ -49,14 +55,14 @@ def updMetinWindowFrame( windowsPos, configWidth = 800, configHeight = 600 ):
     im.save("ancor/metin.png")
     sleep(0.1)
 
-def initialize_shop():
+def initialize_shop( shopName = "default name"):
+   
     # verif if shop packet present in inventory ?
     # attribute to downBarShortcut ?
-    
     # press shortCut 
-    VK_event.UseKey('4')
+    VK_event.UseKey('F4')
     # Fill the Name
-    VK_event.Write('test shop')
+    VK_event.Write( shopName )
     # Press enter 
     VK_event.UseKey('Enter')
 
@@ -67,7 +73,9 @@ def getAbsolutBoardPosByAncor( ancor ):
         "leftTopRedCircle" : (-569, -47), #refAncor-> fishAncor pool
         "prepareThrow" : (-161, -100),#refAncor-> prepareThrow
         "acceptThrow" : (-411,  138),#refAncor-> acceptThrow
-        "shopPos" : (320,180)
+        "shopPos" : (320,180),
+        "acceptShop": ( 370, 360 ),
+        "endShop" : ( 360, 460 )
     }   
     #init new array with defined properties
     res = refs
@@ -78,6 +86,8 @@ def getAbsolutBoardPosByAncor( ancor ):
     res['prepareThrow']      = ( ancor[0] + refs['prepareThrow'][0], ancor[1]+refs['prepareThrow'][1] )
     res['acceptThrow']       = ( ancor[0] + refs['acceptThrow'][0], ancor[1]+refs['acceptThrow'][1] )
     res['shopPos']           = ( ancor[0] + refs['shopPos'][0], ancor[1]+refs['shopPos'][1] )
+    res['acceptShop']        = ( ancor[0] + refs['acceptShop'][0], ancor[1]+refs['acceptShop'][1] )
+    res['endShop']           = ( ancor[0] + refs['endShop'][0], ancor[1]+refs['endShop'][1] )
 
     return res
 
@@ -164,31 +174,40 @@ def autoGlobal() :
             iShop+=1
             sleep(0.5)
 
-def autoDoom( price ):
+def autoDoom( price, shopName ):
     mainAncor = detectAncorGetMetinWindowPosition( userIndication , 100 )
-    initialize_shop()
+    initialize_shop( shopName )
     updMetinWindowFrame( mainAncor )
 
     pos = getAbsolutBoardPosByAncor( mainAncor )
     inv = getInventoryGrid( pos )
     shop = getShopInventoryGrid(pos)
 
-    for x in range(5):
+    
+    for x in range(1):
         for y in range(8):
             u.moveThenClickCoord( "left" , inv[x][y] )
-            sleep(0.1)
             u.moveThenClickCoord( "left" , shop[x][y] )
             VK_event.Write( str(price), True )
-            sleep(0.1)
-            VK_event.UseKey( "Enter" )
-            sleep(0.1)
+            u.moveThenClick( "left" , pos["acceptShop"] )
+
+    
+    u.moveThenClick("left" , pos['endShop'])
+    
+
 
 
 method = str(sys.argv[1])
 price = str(sys.argv[2])
+name = str(sys.argv[3])
 
 if method == "doom" and price != "" :
-    autoDoom( price )
+    if( name == "" or name == None ):
+        name = None
+
+    autoDoom( price , name )
+    mixer.music.play()
+    sleep(6)
 else : 
     print("'You need to run command as => 'py autoShop.py [method] [price]'")
     print(  'EXAMPLE BELOW => \r\n py autoShop.py doom "150 000"')

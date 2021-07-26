@@ -95,18 +95,29 @@ def ReleaseKey(hexKeyCode):
 
 
 def UseKey(hexKeyCode, interval=0.2, caps=False):
+    
     if(caps==True):
         PressKey(VK['Caps'])
+        sleep(0.1)
+
     PressKey(VK[hexKeyCode])
     sleep(interval)
     ReleaseKey(VK[hexKeyCode])
+    sleep(interval)
     if(caps):
         ReleaseKey(VK['Caps'])
 
 def Write(sentence , caps = False ):
-    for line in sentence:
-        UseKey( line, caps = caps )
-        sleep(randint(2,8)/20)
+
+    for letter in sentence:
+        if letter.isupper():
+            caps = True
+        elif letter.isnumeric() : 
+            caps = True
+        else: caps = False
+
+        UseKey( letter.lower(), caps = caps )
+        sleep(randint(1,3)/20)
 
 def UseCtrlKey(hexKeyCode, interval=0.2):
 

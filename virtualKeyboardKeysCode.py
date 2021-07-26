@@ -4,6 +4,10 @@ def getVirtualKeyboardCodes():
         'Caps' : 0x10,
         'Ctrl' : 0X11,
         'Enter' : 0x0D,
+        'F1' : 0x70,
+        'F2' : 0x71,
+        'F3' : 0x72,
+        'F4' : 0x73,
         ' ' : 0x20,#Space
         '0' : 0x30,
         '1' : 0x31,
