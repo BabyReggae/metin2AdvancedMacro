@@ -1,26 +1,42 @@
 {
     "Poisson rouge" : {
-        "default" : {"won" : 0 , "yang" : "1 000 000" },
+        "default" : {"won" : 0 , "yang" : "1 000 000", "size" : 1 },
         "5" :   {"won" : 0 , "yang" : "5 000 000" }
     },
     "Ecrevisse" : {
-        "default" : {"won" : 0 , "yang" : "15 000 000" },
+        "default" : {"won" : 0 , "yang" : "15 000 000", "size" : 1 },
         "5" :   {"won" : 1 , "yang" : "0" },
         "10" : {"won" : 2 , "yang" : "0" }
     },
     "Cle sirene" : {
-
+        "default" : {"won" : 0 , "yang" : "30000000", "size" : 1 }
     },
     "Anneau d'or" : {
-
+        "default" : {"won" : 0 , "yang" : "30000000", "size" : 1 }
     },
     "Tete-de-serpent" : {
-
+        "default" : {"won" : 0 , "yang" : "30000000", "size" : 1 }
     },
-    "Anguille" : {
-
+    "Anguille grillé" : {
+        "default" : {"won" : 0 , "yang" : "10000000", "size" : 1 }
     },
     "Eperlan" : {
-
+        "default" : {"won" : 0 , "yang" : "20000000", "size" : 1 }
+    },
+    "Crabe royal grillé" : {
+        "default" : {"won" : 0 , "yang" : "20000000", "size" : 1 }
+    },
+    "Palourde" : {
+        "default" : {"won" : 0 , "yang" : "20000000", "size" : 1 }
+    },
+    "Carpe prédatrice" : {
+        "default" : {"won" : 0 , "yang" : "20000000", "size" : 1 }
+    },
+    "Arrete" : {
+        "default" : {"won" : 0 , "yang" : "20000000", "size" : 1 }
+    },
+    "Shiri grille" : {
+        "default" : {"won" : 0 , "yang" : "20000000", "size" : 1 }
     }
+
 }

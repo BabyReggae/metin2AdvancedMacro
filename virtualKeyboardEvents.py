@@ -1,8 +1,13 @@
 import ctypes
 from ctypes import wintypes
-import time
-import virtualKeyboardEvents
-VK = virtualKeyboardEvents.getVirtualKeyboardCodes()
+from random import randint
+import time 
+from time import sleep
+import virtualKeyboardKeysCode as VK_code
+
+
+VK = VK_code.getVirtualKeyboardCodes()
+
 user32 = ctypes.WinDLL('user32', use_last_error=True)
 INPUT_MOUSE = 0
 INPUT_KEYBOARD = 1
@@ -71,33 +76,37 @@ def _check_count(result, func, args):
 
 user32.SendInput.errcheck = _check_count
 user32.SendInput.argtypes = (wintypes.UINT,  # nInputs
-                             LPINPUT,       # pInputs
-                             ctypes.c_int)  # cbSize
+                            LPINPUT,       # pInputs
+                            ctypes.c_int)  # cbSize
 # Functions
 
 
 def PressKey(hexKeyCode):
     x = INPUT(type=INPUT_KEYBOARD,
-              ki=KEYBDINPUT(wVk=hexKeyCode))
+            ki=KEYBDINPUT(wVk=hexKeyCode))
     user32.SendInput(1, ctypes.byref(x), ctypes.sizeof(x))
 
 
 def ReleaseKey(hexKeyCode):
     x = INPUT(type=INPUT_KEYBOARD,
-              ki=KEYBDINPUT(wVk=hexKeyCode,
+            ki=KEYBDINPUT(wVk=hexKeyCode,
                             dwFlags=KEYEVENTF_KEYUP))
     user32.SendInput(1, ctypes.byref(x), ctypes.sizeof(x))
 
 
 def UseKey(hexKeyCode, interval=0.2, caps=False):
-    if(caps):
+    if(caps==True):
         PressKey(VK['Caps'])
     PressKey(VK[hexKeyCode])
-    time.sleep(interval)
+    sleep(interval)
     ReleaseKey(VK[hexKeyCode])
     if(caps):
         ReleaseKey(VK['Caps'])
 
+def Write(sentence , caps = False ):
+    for line in sentence:
+        UseKey( line, caps = caps )
+        sleep(randint(2,8)/20)
 
 def UseCtrlKey(hexKeyCode, interval=0.2):
 
@@ -117,7 +126,8 @@ def AltTab():
     time.sleep(0.2)
 
 
-time.sleep(3)
-AltTab()
-UseKey('c', caps=True)
-UseCtrlKey('a')
+# time.sleep(3)
+# # AltTab()
+# UseKey('c', caps=True)
+# UseCtrlKey('a')
+
