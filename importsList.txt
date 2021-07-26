@@ -1,6 +1,0 @@
-pip install wheel
-
-cd .\cdifflib-main\
-python setup.py install
-cd ..
-pip install pygame

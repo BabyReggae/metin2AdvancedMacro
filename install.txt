@@ -1,0 +1,14 @@
+# ASSUME PIP PÄCKGE MANAGER WORKING ON YOUR DEVICE
+#OPEN/COPY/PASTE IN YOUR WINDOWS TERMINAL (ADMIN PERMISSION REQUIRED)
+
+pip install pipreqs
+pipreqs 
+pip install -r requirements.txt
+
+
+# USE OF DOOMED AUTOSHOP ( EXAMPLES )
+
+py .\autoshop.py doom "200 000" "SHOP NAME"
+py .\autoshop.py doom "300 000" "SHOP NAME2"
+py .\autoshop.py doom "1 200 000" "SHOP NAME3"
+
