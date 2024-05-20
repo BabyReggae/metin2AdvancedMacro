@@ -21,7 +21,7 @@ clear = lambda: os.system('cls')
 clear()
 
 print ('Prix item a => :', '"'+str(sys.argv[2])+'$"'  )
-
+print('edit test')
 
 _FINISH = False
 now = datetime.now()
