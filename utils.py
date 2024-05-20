@@ -15,9 +15,7 @@ import cv2
 import json
 from types import SimpleNamespace
 
-
-
-
+import pyautogui
 
 def listFile( path ):
         res = glob.glob(  path + "*")
@@ -45,14 +43,12 @@ def moveToCoord( coord ):
     mouse = Controller()
     mouse.position = (coord['x'],coord['y'])
 
-
 def moveThenClick( mouseBtn, coord ):
     mouse = Controller()
     mouse.position = (coord[0],coord[1])
     time.sleep(0.05)
     mouse.click( Button[mouseBtn],1)
     time.sleep(0.1)
-
 
 def moveThenClickCoord( mouseBtn, coord ):
     mouse = Controller()
@@ -106,9 +102,12 @@ def getListOfPixelPosByColor(im, boxRangeX, boxRangeY, targetColor, blurArea ):
 
     return imData
 
+def get_img_dimensions(path):
+    favicon_img = Image.open(path)
+    width, height = favicon_img.size
+    return width, height
 
 ################ IMG IN IMG // IMG TO TEXT // TEXT TO PRICE -- TODO LOAD GLOBAL VAR BY ENV VAR ( create .env )
-
 
 
 
@@ -247,6 +246,12 @@ def getItemPriceByParsingMousePosImg( mousePos, nearRange = 220, fontAverageRang
     pricingData = itemData[match[0]] if itemData.get(match[0]) else None
 
     return pricingData
+
+
+
+def get_screen_resolution():
+    return pyautogui.size()
+
 
 
 # # getImgPosInImg( 'img/guessedItemDesription.png', "ancor/refs/items/leftTopItemBorder.png", method=cv2.TM_SQDIFF_NORMED ,  debug=True )

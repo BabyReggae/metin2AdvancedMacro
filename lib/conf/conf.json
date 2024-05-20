@@ -1,0 +1,184 @@
+{
+    "coordinates": {
+        "START": [
+            336,
+            557
+        ],
+        "LEAVE": [
+            336,
+            600
+        ],
+        "FENETREDEMERDEAULOAD": [
+            738,
+            27
+        ],
+        "INVENTORY": [
+            695,
+            592
+        ],
+        "CHANGE_CHARACTER": [
+            383,
+            351
+        ],
+        "CHAR_SELECT_1": [
+            97,
+            255
+        ],
+        "CHAR_SELECT_2": [
+            101,
+            301
+        ],
+        "CHAR_SELECT_3": [
+            105,
+            342
+        ],
+        "CHAR_SELECT_4": [
+            110,
+            383
+        ],
+        "CHAR_SELECT_5": [
+            103,
+            431
+        ],
+        "DISCONNECT": [
+            374,
+            381
+        ],
+        "SERV_EUW": [
+            247,
+            305
+        ],
+        "SELECT_CH1": [
+            504,
+            187
+        ],
+        "SELECT_CH2": [
+            487,
+            205
+        ],
+        "SELECT_CH3": [
+            497,
+            222
+        ],
+        "SELECT_CH4": [
+            505,
+            240
+        ],
+        "SELECT_CH5": [
+            494,
+            254
+        ],
+        "SELECT_CH6": [
+            509,
+            272
+        ],
+        "SERVER_OK": [
+            509,
+            497
+        ],
+        "INVENTORY_FIRST_SLOT": [
+            622,
+            268
+        ],
+        "INVENTORY_FIRST_SLOT_ANCOR": [
+            609,
+            252
+        ],
+        "INVENTORY_PAGE_2": [
+            667,
+            240
+        ],
+        "INVENTORY_PAGE_1": [
+            626,
+            238
+        ],
+        "SHORTCUT_1": [
+            300,
+            587
+        ],
+        "SHORTCUT_2": [
+            336,
+            588
+        ],
+        "SHORTCUT_3": [
+            367,
+            589
+        ],
+        "SHORTCUT_4": [
+            403,
+            589
+        ],
+        "SHORTCUT_5": [
+            449,
+            591
+        ],
+        "SHORTCUT_6": [
+            478,
+            591
+        ],
+        "SHORTCUT_7": [
+            512,
+            590
+        ],
+        "SHORTCUT_8": [
+            544,
+            592
+        ],
+        "FINDER_MAIN_MENU": [
+            113,
+            228
+        ],
+        "FINDER_AMELIO_MENU": [
+            110,
+            317
+        ],
+        "FINDER_SEARCH": [
+            105,
+            475
+        ],
+        "FINDER_INPUT": [
+            113,
+            447
+        ],
+        "FINDER_RESULT_PAGE_SECOND": [
+            389,
+            447
+        ],
+        "FINDER_RESULT_PAGE_THIRD": [
+            421,
+            445
+        ],
+        "FINDER_RESULT_PAGE_FOURTH": [
+            458,
+            443
+        ],
+        "FINDER_RESULT_PAGE_FIFTH": [
+            494,
+            445
+        ],
+        "FINDER_RESULT_PAGE_FIRST": [
+            353,
+            446
+        ],
+        "FINDER_RESULT_NEXT_PAGES": [
+            530,
+            443
+        ],
+        "FINDER_RESULT_WINDOW_ANCOR": [
+            170,
+            185
+        ],
+        "SHOP_FIRST_SLOT_ANCOR": [
+            301,
+            192
+        ],
+        "CONFIRM_ITEM_PRICE_ANCOR": [
+            341,
+            365
+        ],
+        "CONFIRM_SHOP_ANCOR": [
+            331,
+            468
+        ]
+    }
+}

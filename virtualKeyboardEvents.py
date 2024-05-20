@@ -117,7 +117,7 @@ def Write(sentence , caps = False ):
         else: caps = False
 
         UseKey( letter.lower(), caps = caps )
-        sleep(randint(1,3)/20)
+        sleep(randint(1,3)/40)
 
 def UseCtrlKey(hexKeyCode, interval=0.2):
 

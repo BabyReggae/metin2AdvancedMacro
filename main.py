@@ -292,7 +292,7 @@ def startSortingLoop():
 
 
             nbNoActionRequired += 1
-    
+
 
     # print( str( nbNoActionRequired ) + " ne néccessitent aucune action" )
     print( str( nbTrowable ) + " ont été jétés" )

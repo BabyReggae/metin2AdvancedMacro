@@ -177,6 +177,14 @@ def autoGlobal() :
 def autoDoom( price, shopName ):
     mainAncor = detectAncorGetMetinWindowPosition( userIndication , 100 )
     initialize_shop( shopName )
+    # The `updMetinWindowFrame` function takes the position of the Metin window frame as input and
+    # captures a screenshot of the specified area within the Metin window. It saves this screenshot as
+    # an image file named "metin.png" in the "ancor" directory. The function is used to update the
+    # frame of the Metin window for further processing or analysis within the script.
+    # The `updMetinWindowFrame` function takes the position of the Metin window frame and updates the
+    # screenshot of the Metin window. It captures a new screenshot of the Metin window based on the
+    # provided window position and saves it as "ancor/metin.png". This function is used to refresh the
+    # image of the Metin window for further processing or analysis in the automation script.
     updMetinWindowFrame( mainAncor )
 
     pos = getAbsolutBoardPosByAncor( mainAncor )
@@ -190,11 +198,9 @@ def autoDoom( price, shopName ):
             u.moveThenClickCoord( "left" , shop[x][y] )
             VK_event.Write( str(price), True )
             u.moveThenClick( "left" , pos["acceptShop"] )
-
     
     u.moveThenClick("left" , pos['endShop'])
     
-
 
 
 method = str(sys.argv[1])
