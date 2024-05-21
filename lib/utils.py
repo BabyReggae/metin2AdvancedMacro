@@ -328,6 +328,25 @@ def compare_images(img1, img2):
             return True
         return False
 
+def image_to_integer(image_path):
+    #TODO test this aswell
+    # https://stackoverflow.com/questions/75959720/how-to-extract-number-from-an-image
+
+    # Open the image file
+    img = Image.open(image_path)
+
+    # Use pytesseract to do OCR on the image
+    text = pytesseract.image_to_string(img, config='--psm 8 -c tessedit_char_whitelist=0123456789')
+
+    # Remove any non-digit characters
+    text = ''.join(filter(str.isdigit, text))
+
+    # Convert the text to an integer
+    if text:
+        return int(text)
+    else:
+        raise ValueError("No digits found in the image")
+
 # # getImgPosInImg( 'img/guessedItemDesription.png', "ancor/refs/items/leftTopItemBorder.png", method=cv2.TM_SQDIFF_NORMED ,  debug=True )
 
 # getImgPosInImg( 'img/guessedItemDesription.png', "ancor/refs/items/rightTopItemBorder4.png", method=cv2.TM_SQDIFF_NORMED ,  debug=True )
