@@ -18,6 +18,21 @@ from types import SimpleNamespace
 import pyautogui
 import json
 
+def askUserQuestion(question: str, answer_type: type):
+    while True:
+        user_input = input(question + ' ')
+        
+        if answer_type == int:
+            try:
+                return int(user_input)
+            except ValueError:
+                print("Please enter a valid integer.")
+        elif answer_type == str:
+            return user_input
+        else:
+            raise ValueError("Unsupported answer type. Supported types are 'str' and 'int'.")
+
+
 def clearImgNoise( src_path, dest_path, inverse_noiseRange = ((160,150,140),(255,255,255)) ):
     extractedImg = Image.open( src_path )
     extractedImg = extractedImg.convert("RGBA")

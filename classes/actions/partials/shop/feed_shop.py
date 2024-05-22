@@ -24,9 +24,6 @@ class FeedShop(ActionsBloc):
                         
                         shop_slot.state = "item"
                         break
-                    
-                print('Le shop est PLEIN !')
-                break
 
         u.moveThenClick("left", self.instance.coord['CONFIRM_SHOP_ANCOR'])
 
