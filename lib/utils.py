@@ -33,8 +33,13 @@ def askUserQuestion(question: str, answer_type: type):
             raise ValueError("Unsupported answer type. Supported types are 'str' and 'int'.")
 
 
-def clearImgNoise( src_path, dest_path, inverse_noiseRange = ((160,150,140),(255,255,255)) ):
-    extractedImg = Image.open( src_path )
+def clearImgNoise( img:Image = None, save = False,  src_path = None , dest_path = None, inverse_noiseRange = ((160,150,140),(255,255,255)) ):
+    
+    if img != None:
+        extractedImg = img
+    else:
+        extractedImg = Image.open( src_path )
+    
     extractedImg = extractedImg.convert("RGBA")
     pixdata = extractedImg.load()
     imgsize = extractedImg.size
@@ -46,8 +51,12 @@ def clearImgNoise( src_path, dest_path, inverse_noiseRange = ((160,150,140),(255
             colorVal = extractedImg.getpixel( (pX ,pY) )
             if isPixelColorContainedInRange(  fontAverageRangeColor[0], fontAverageRangeColor[1], colorVal ) == False:
                 pixdata[pX, pY] = (0, 0, 0, 255)
-
-    extractedImg.save( dest_path )
+            else:
+                pixdata[pX, pY] = (255, 255, 255, 255)
+    if save: 
+        extractedImg.save( dest_path )
+        
+    return extractedImg
 
 def cropFromPosition(position, width, height, imgName, debug=False):
     # Get coordinates for the cropped area
@@ -369,4 +378,49 @@ def image_to_integer(image_path):
 # parsedExtractedText = extractedText.strip()
 
 # print( parsedExtractedText , extractedText )
+
+
+def testimagetonumbers():
+
+    im_name = "img/metinshopref_partcol.png"
+
+    # Read Image and Crop Borders
+    img = cv2.imread(im_name)
+
+
+
+    # Threshold on Red Channel
+    # th=185
+    # img[img[...,2]>th]=0
+    
+
+    # Gray Color
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+    # Thresholding
+    # binary = cv2.threshold(gray, 0, 255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)[1]
+    # cv2.imshow("output", binary)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+
+
+
+    # Resize as original image is small 
+    scale_ = 2 # of original size
+    width = int(img.shape[1] * scale_ )
+    height = int(img.shape[0] * scale_ )
+    dim = (width, height)
+    # resize image
+    resized = cv2.resize(img, dim, interpolation = cv2.INTER_CUBIC)
+
+    # Morhpological Erosion
+    resized = cv2.erode(resized, None)
+
+    # OCR
+    print(pytesseract.image_to_string(resized, config='--psm 13 outputbase digits'))
+
+    # Visualization
+    cv2.namedWindow("output", cv2.WINDOW_NORMAL)
+    cv2.imshow("output", resized)
+    cv2.waitKey(0)
 

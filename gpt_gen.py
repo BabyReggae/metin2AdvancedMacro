@@ -77,6 +77,17 @@ def wait_user_action(instances):
     global LAST_SHOP_INFO
     print("En attente d'une action utilisateur...")
     while True:
+        if keyboard.is_pressed('t'):
+            instances.append(initGameInstance())
+            action = ScanMarketPlace(instances[0])
+            ACTION_QUEUE.append(action)
+            break
+        
+        if keyboard.is_pressed('r'):
+            action = ScanMarketPlace(instances[0])
+            ACTION_QUEUE.append(action)
+            break
+        
         if keyboard.is_pressed('n'):
             new_instance = initGameInstance()
             shop_name = askUserQuestion("Enter shop name: ", str)
@@ -98,7 +109,7 @@ def wait_user_action(instances):
                 print("Error: No previously created DoomShop found.")
             break
 
-        if keyboard.is_pressed('p'):
+        if keyboard.is_pressed('e'):
             for action in ACTION_QUEUE:
                 action.execute()
             print("All actions in the queue have been executed.")
@@ -106,7 +117,7 @@ def wait_user_action(instances):
             break
 
         time.sleep(0.1)
-
+    time.sleep(1)
     wait_user_action(instances)
 
 if __name__ == "__main__":

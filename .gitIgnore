@@ -2,3 +2,11 @@
 /ancor/shoots2
 /ancor/notFound
 test.py
+classes/__pycache__/actions_bloc.cpython-39.pyc
+classes/__pycache__/game_instance.cpython-39.pyc
+classes/__pycache__/inventory.cpython-39.pyc
+classes/actions/partials/inventory/__pycache__/init_inventory.cpython-39.pyc
+classes/actions/__pycache__/connect.cpython-39.pyc
+classes/actions/partials/shop/__pycache__/feed_shop.cpython-39.pyc
+classes/actions/partials/shop/__pycache__/init_shop.cpython-39.pyc
+lib/__pycache__/utils.cpython-39.pyc
