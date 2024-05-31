@@ -1,3 +1,4 @@
+import os
 import cv2
 import pyautogui
 import numpy as np
@@ -77,6 +78,7 @@ def askUserQuestion(question: str, answer_type: type):
 def wait_user_action(instances):    
     global LAST_SHOP_INFO
     
+    os.system('cls')
     print("\r\n \r\nTOUT LANCER ou AJOUTER DES ACTIONS DANS LA FILE D'ATTENTE\r\n \r\n'e' => Sa lance toute les actions que ta creer dans la file d'attente \r\n'n' => Nouveau SHOP\r\n'b' => Répéter le SHOP(genre t'as dautre shop le même prix que celui qye tu viens de creer )\r\n'x' => 'Arrete le script - pour fermer proprement la console ensuite " )
     nbaction = len(ACTION_QUEUE)
     print(f"\r\n \r\n===> {nbaction} ACTION  DANS LA FILE D'ATTENTE\r\n \r\n")
