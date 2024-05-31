@@ -74,12 +74,12 @@ def askUserQuestion(question: str, answer_type: type):
             raise ValueError("Unsupported answer type. Supported types are 'str' and 'int'.")
     
 
-def wait_user_action(instances):
+def wait_user_action(instances):    
     global LAST_SHOP_INFO
     
-    print("TOUT LANCER ou AJOUTER DES ACTIONS DANS LA FILE D'ATTENTE\r\n \r\n'e' => Sa lance toute les actions que ta creer dans la file d'attente \r\n'n' => Nouveau SHOP\r\n'b' => Répéter le SHOP(genre t'as dautre shop le même prix que celui qye tu viens de creer )" )
+    print("\r\n \r\nTOUT LANCER ou AJOUTER DES ACTIONS DANS LA FILE D'ATTENTE\r\n \r\n'e' => Sa lance toute les actions que ta creer dans la file d'attente \r\n'n' => Nouveau SHOP\r\n'b' => Répéter le SHOP(genre t'as dautre shop le même prix que celui qye tu viens de creer )\r\n'x' => 'Arrete le script - pour fermer proprement la console ensuite " )
     nbaction = len(ACTION_QUEUE)
-    print(f"POUR LINSTANT {nbaction} DANS LA FILE D'ATTENTE")
+    print(f"\r\n \r\n===> {nbaction} ACTION  DANS LA FILE D'ATTENTE\r\n \r\n")
     while True:
         if keyboard.is_pressed('t'):
             instances.append(initGameInstance())
@@ -119,6 +119,9 @@ def wait_user_action(instances):
             print("Bimbamboum - finito les trucs a faire- Metin un jeu de dog quand même ")
             ACTION_QUEUE.clear()
             break
+
+        if keyboard.is_pressed('x'):
+            exit(0)
 
     time.sleep(1)
     wait_user_action(instances)
