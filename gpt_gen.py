@@ -41,10 +41,11 @@ def find_favicon_position():
     match_start, _ = find_image_in_screenshot(screenshot, "ancor/favicon.png")
     if match_start is None:
         print("ECHEC - vérifier que l'icon apparait en entier dans le screenShot")
-        cv2.imshow("Screenshot", screenshot)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()
-        exit(0)
+        # cv2.imshow("Screenshot", screenshot)
+        # cv2.waitKey(0)
+        # cv2.destroyAllWindows()
+        # exit(0)
+        return None
     ancor = u.get_img_dimensions("ancor/favicon.png")
     match_start_adjusted = ((match_start[0] + ancor[0]) + click_pos[0] - (box_size // 2), (match_start[1] + ancor[1]) + click_pos[1] - (box_size // 2))
     return match_start_adjusted
@@ -75,7 +76,7 @@ def askUserQuestion(question: str, answer_type: type):
 
 def wait_user_action(instances):
     global LAST_SHOP_INFO
-    print("En attente d'une action utilisateur...")
+    print("TOUT LANCER ou AJOUTER DES ACTIONS DANS LA FILE D'ATTENTE\r\n \r\n'e' => Sa lance toute les actions que ta creer dans la file d'attente \r\n'n' => Nouveau SHOP\r\n'b' => Répéter le SHOP(genre t'as dautre shop le même prix que celui qye tu viens de creer )" )
     while True:
         if keyboard.is_pressed('t'):
             instances.append(initGameInstance())
@@ -112,11 +113,10 @@ def wait_user_action(instances):
         if keyboard.is_pressed('e'):
             for action in ACTION_QUEUE:
                 action.execute()
-            print("All actions in the queue have been executed.")
+            print("finito les truc a faire")
             ACTION_QUEUE.clear()
             break
 
-        time.sleep(0.1)
     time.sleep(1)
     wait_user_action(instances)
 
