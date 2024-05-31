@@ -76,7 +76,10 @@ def askUserQuestion(question: str, answer_type: type):
 
 def wait_user_action(instances):
     global LAST_SHOP_INFO
+    
     print("TOUT LANCER ou AJOUTER DES ACTIONS DANS LA FILE D'ATTENTE\r\n \r\n'e' => Sa lance toute les actions que ta creer dans la file d'attente \r\n'n' => Nouveau SHOP\r\n'b' => Répéter le SHOP(genre t'as dautre shop le même prix que celui qye tu viens de creer )" )
+    nbaction = len(ACTION_QUEUE)
+    print(f"POUR LINSTANT {nbaction} DANS LA FILE D'ATTENTE")
     while True:
         if keyboard.is_pressed('t'):
             instances.append(initGameInstance())
@@ -91,12 +94,12 @@ def wait_user_action(instances):
         
         if keyboard.is_pressed('n'):
             new_instance = initGameInstance()
-            shop_name = askUserQuestion("Enter shop name: ", str)
-            price = askUserQuestion("Enter price: ", int)
+            shop_name = askUserQuestion("\r\n \r\nENTRER LE NOM DU SHOP (chiffre,lettre simple, majuscule ) : ", str)
+            price = askUserQuestion("\r\n \r\nENTRER LE PRIX DU SHOP : ", int)
             action = CreateShopDoom(new_instance, shop_name, price)
             ACTION_QUEUE.append(action)
             LAST_SHOP_INFO = (shop_name, price)
-            print(f"DoomShop with name '{shop_name}' and price '{price}' added to action queue.")
+            print(f"'{shop_name}' AVEC LE PRIX '{price}' A ETE AJOUTER A LA FILE DATTENTE")
             break
 
         if keyboard.is_pressed('b'):
@@ -105,15 +108,15 @@ def wait_user_action(instances):
                 new_instance = initGameInstance()
                 action = CreateShopDoom(new_instance, shop_name, price)
                 ACTION_QUEUE.append(action)
-                print(f"New DoomShop with name '{shop_name}' and price '{price}' added to action queue.")
+                print(f"'{shop_name}' AVEC LE PRIX '{price}' A ETE AJOUTER A LA FILE DATTENTE")
             else:
-                print("Error: No previously created DoomShop found.")
+                print("AUCUN SHOP DEJA DANS LA FILE D'ATTENTE, CREE EN UN DABORD !")
             break
 
         if keyboard.is_pressed('e'):
             for action in ACTION_QUEUE:
                 action.execute()
-            print("finito les truc a faire")
+            print("Bimbamboum - finito les trucs a faire- Metin un jeu de dog quand même ")
             ACTION_QUEUE.clear()
             break
 
