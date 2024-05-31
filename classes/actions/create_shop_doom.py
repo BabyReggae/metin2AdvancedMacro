@@ -2,7 +2,6 @@ from classes.actions.connect import Connect
 from classes.actions.partials.inventory.init_inventory import InitInventory
 from classes.actions.partials.shop.feed_shop import FeedShop
 from classes.actions.partials.shop.init_shop import InitShop
-from classes.actions.test import Test
 from classes.game_instance import GameInstance
 import lib.utils as u
 from classes.actions_bloc import ActionsBloc
