@@ -1,1 +1,52 @@
-pip install -U numpy
+# Define the repository URL
+$repoUrl = "https://github.com/BabyReggae/metin2AdvancedMacro.git"
+
+# Install Chocolatey (if not already installed)
+if (-Not (Get-Command choco -ErrorAction SilentlyContinue)) {
+    Set-ExecutionPolicy Bypass -Scope Process -Force
+    [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+    Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+}
+
+# Install Python and Git using Chocolatey
+choco install -y python git
+
+# Add Python and Git to the environment PATH
+$pythonPath = "C:\Python39"
+$gitPath = "C:\Program Files\Git\bin"
+$env:Path += ";$pythonPath;$gitPath"
+[System.Environment]::SetEnvironmentVariable("Path", $env:Path, [System.EnvironmentVariableTarget]::Machine)
+
+# Verify the installations
+python --version
+pip --version
+git --version
+
+# Create a directory named BATEAU
+New-Item -Path "C:\" -Name "BATEAU" -ItemType "Directory"
+
+# Clone the Git repository into the BATEAU directory
+cd C:\metin2AdvancedMacro\BATEAU
+git clone $repoUrl
+
+# Install Python packages from requirements.txt if it exists
+if (Test-Path -Path "requirements.txt") {
+    pip install -r requirements.txt
+}
+
+# Set the default PowerShell location to the dir 'BATEAU'
+$profilePath = "$HOME\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1"
+
+if (-Not (Test-Path -Path $profilePath)) {
+    New-Item -Path $profilePath -ItemType "File" -Force
+}
+
+Add-Content -Path $profilePath -Value "`nSet-Location -Path 'C:\metin2AdvancedMacro\BATEAU'"
+
+# Add an alias 'bateau' to the command 'py bateau.py'
+Add-Content -Path $profilePath -Value "`nSet-Alias bateau `"$env:PythonPath\python.exe`" `"$PWD\bateau.py`""
+
+# Apply the changes by reloading the profile
+. $profilePath
+
+Write-Output "Setup complete."

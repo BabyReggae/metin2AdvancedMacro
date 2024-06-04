@@ -85,8 +85,6 @@ def wait_user_action(instances):
     while True:
         if keyboard.is_pressed('t'):
             instances.append(initGameInstance())
-            action = ScanMarketPlace(instances[0])
-            ACTION_QUEUE.append(action)
             break
         
         if keyboard.is_pressed('r'):
@@ -120,6 +118,13 @@ def wait_user_action(instances):
                 action.execute()
             print("Bimbamboum - finito les trucs a faire- Metin un jeu de dog quand même ")
             ACTION_QUEUE.clear()
+            break
+
+        if keyboard.is_pressed('c'):
+            print("New Coord creation - waiting for user click")
+            d = instances[0].getRelativeDistanceFromClick()
+            print(d)
+            u.add_new_coordinate(d)
             break
 
         if keyboard.is_pressed('x'):

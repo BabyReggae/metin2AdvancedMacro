@@ -16,7 +16,7 @@ ActionsBloc):
         self.children = [
             # Connect( self.instance ),
             # AmelioMarker( self.instance ),
-            FinderResultCrawlPage( self.instance )
+            ActionNameMarketPageItems( self.instance, 'json/shopDictionary.json' )
         ]
 
 
